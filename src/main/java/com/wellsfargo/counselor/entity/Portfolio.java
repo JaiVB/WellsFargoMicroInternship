@@ -1,14 +1,7 @@
 package com.wellsfargo.counselor.entity;
 
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-
+import jakarta.persistence.*;
 
 @Entity
 public class Portfolio {
@@ -18,32 +11,37 @@ public class Portfolio {
     private long portfolioId;
 
     @ManyToOne
-    @JoinColumn(name = "clientId", nullable = false)
     private Client client;
 
-    
-
     @Column(nullable = false)
-    private int creationDate;
+    private String creationDate;
 
-    public Portfolio(Client client, int creationDate){
+    protected Portfolio() {
+
+    }
+
+    public Portfolio(Client client, String creationDate) {
+        this.client       = client;
         this.creationDate = creationDate;
     }
- 
-    public long getPortfolioId(){
+
+    public Long getPortfolioId() {
         return portfolioId;
     }
-    
-    public int getCreationDate(){
+
+    public Client getCLient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(int creationDate){
+    public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
-    
-
-    
-
-    
 }
